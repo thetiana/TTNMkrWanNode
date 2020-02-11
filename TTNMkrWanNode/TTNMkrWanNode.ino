@@ -29,6 +29,9 @@
 #ifdef SENSOR_BME280
 #include "bme280.h"
 #endif
+#ifdef SENSOR_BMP180
+#include "BMP180.h"
+#endif
 #include <CayenneLPP.h>
 
 TTN ttn;
@@ -48,6 +51,10 @@ MaximTemp maximTemp;
 BME280 bme280;
 #endif
 
+#ifdef SENSOR_BMP180
+SFE_BMP180 pressure;
+#endif
+
 Sensor* sensors[] = {
 #ifdef SENSOR_VOLTAGE
   &voltageSensor,
@@ -57,6 +64,10 @@ Sensor* sensors[] = {
 #endif
 #ifdef SENSOR_BME280
   &bme280,
+#endif
+  
+  #ifdef SENSOR_BMP180
+  &BMP180,
 #endif
 };
 
