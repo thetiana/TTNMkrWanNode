@@ -21,6 +21,7 @@
 #define TTNMkrWanNode_h
 
 #include <Arduino.h>
+#include "config.h"
 
 
 /*
@@ -33,7 +34,7 @@ const uint8_t ledPin    = PIN_LED;
  * Sensors
  */
 
-#define SENSOR_VOLTAGE
+//#define SENSOR_VOLTAGE
 // #define SENSOR_MAXIM
 // #define SENSOR_BME280
 
