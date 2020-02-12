@@ -1,10 +1,21 @@
 TTN MKRWAN Node [![Build Status](https://travis-ci.org/AmedeeBulle/TTNMkrWanNode.svg?branch=master)](https://travis-ci.org/AmedeeBulle/TTNMkrWanNode)
 ===============
 
+This is the modified version of AmedeeBulle TTN MKRWAN Node.
+
+Changes:
+1. Serial debug is fixed
+2. Added config.h where is located all device settings.
+3. arduino_secrets.h is removed the ttn setings is moved to config.h for easy config.
+4. TOdo to be fixed display debug
+5. TOdo to be added support of BMP180 temp/pressure sensor.
+
 # Background
 Proof of concept for an "ultra low power" LoRaWAN / [The Things Network](https://www.thethingsnetwork.org/) node using the [Arduino MKR WAN 1300](https://store.arduino.cc/mkr-wan-1300).
 
 The MKR WAN 1300 uses too much power in sleep mode to be used as ultra low power device (a bit more than 1mA).
+On MKR WAN 1300 V1 the TCXO OFF/ON is not driven by the MCU and this is the main reason for high power consumption in sleep mode. 
+This have to be fixed with MKR WAN 1300 V2 or higher, the information is not confirmed.
 
 This proof of concept uses a [Texas Instrument TPL5110](http://www.ti.com/product/TPL5110) Ultra Low Power Timer to bring the sleep current under 50nA.  
 As the device is completely powered off during sleep time we use a [FRAM](https://fr.wikipedia.org/wiki/Ferroelectric_Random_Access_Memory) module to save the LoRaWAN session keys and frame counters.
@@ -43,6 +54,7 @@ The code relies on the following hardware:
 Any similar hardware should work, but might need some code change.
 
 # Software dependencies
+To save you little bit time I add Used_Lib file, where you can find which version of the library is used to be possible sucessful compilation with Arduino IDE.
 The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following libraries (all available from the Arduino Library Manager):
 - [Arduino MKRWAN](https://github.com/arduino-libraries/MKRWAN) version 1.1.7 or newer
 - [Adafruit FRAM](https://github.com/adafruit/Adafruit_FRAM_SPI) (SPI version)
@@ -62,10 +74,12 @@ Sample setup with an SH1106 OLED display and a DS18B20 sensor:
 
 # Operations
 ## Software configuration
-- Copy `arduino_secrets_distr.h` to `arduino_secrets.h` and enter your keys obtained from TheThingsNetwork console
-- In `TTNMkrWanNode` uncomment the _defines_ for your sensors.  
+- Copy and enter your keys obtained from TheThingsNetwork console to `confih.h`
+- In `confih.h` uncomment the _defines_ for your sensors.  
 The Voltage sensor is always available, it uses the built-in divider.
 Note that givent the fact that the divider is 1/3rd and the voltage reference is 1.0v, the maximum you can measure is 3.0v...
+To use Serial debug you can comment and uncomment DEBUG_SERIAL from the config.h
+Listed below debug options cannot work. 
 - In `debug.h` choose your debugging option:
   - `#define DEBUG` commented out: no debug code generated
   - `#define DEBUG` uncommented: debug on the (USB) serial console.
