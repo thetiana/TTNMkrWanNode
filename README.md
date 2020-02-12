@@ -78,6 +78,7 @@ Sample setup with an SH1106 OLED display and a DS18B20 sensor:
 - In `confih.h` uncomment the _defines_ for your sensors.  
 The Voltage sensor is always available, it uses the built-in divider.
 Note that givent the fact that the divider is 1/3rd and the voltage reference is 1.0v, the maximum you can measure is 3.0v...
+
 To use Serial debug you can comment and uncomment DEBUG_SERIAL from the config.h
 Listed below debug options cannot work. 
 - In `debug.h` choose your debugging option:
