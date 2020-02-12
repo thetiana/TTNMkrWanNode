@@ -1,4 +1,0 @@
-#define SENSOR_VOLTAGE
-// #define SENSOR_MAXIM
-// #define SENSOR_BME280
-#define SENSOR_BMP180
